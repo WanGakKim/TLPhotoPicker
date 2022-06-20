@@ -14,12 +14,12 @@ open class TLAssetPreviewViewController: UIViewController {
         return view
     }()
     
-    fileprivate let livePhotoView = PHLivePhotoView()
+    fileprivate let livePhotoView = UIView()
 
     open var asset: PHAsset? {
         didSet {
             guard let asset = self.asset else {
-                livePhotoView.livePhoto = nil
+//                livePhotoView.livePhoto = nil
                 imageView.image = nil
                 return
             }
@@ -135,13 +135,18 @@ private extension TLAssetPreviewViewController {
         imageView.isHidden = true
         livePhotoView.isHidden = false
         
-        if asset.mediaSubtypes == .photoLive {
-            previewLivePhoto(from: asset)
+        if #available(iOS 9.1, *) {
+            if asset.mediaSubtypes == .photoLive {
+                previewLivePhoto(from: asset)
+            } else {
+                previewPhoto(from: asset)
+            }
         } else {
-            previewPhoto(from: asset)
+            // Fallback on earlier versions
         }
     }
     
+    @available(iOS 9.1, *)
     func previewLivePhoto(from asset: PHAsset) {
         
         let options = PHLivePhotoRequestOptions()
@@ -155,8 +160,8 @@ private extension TLAssetPreviewViewController {
             options: options,
             resultHandler: { [weak self] (livePhoto, info) in
                 if let livePhoto = livePhoto, info?[PHImageErrorKey] == nil {
-                    self?.livePhotoView.livePhoto = livePhoto
-                    self?.livePhotoView.startPlayback(with: .full)
+//                    self?.livePhotoView.livePhoto = livePhoto
+//                    self?.livePhotoView.startPlayback(with: .full)
                 } else {
                     self?.previewPhoto(from: asset)
                 }

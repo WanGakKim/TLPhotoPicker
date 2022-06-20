@@ -64,7 +64,7 @@ public struct TLPhotosPickerConfigure {
     public var defaultToFrontFacingCamera = false
     public var usedPrefetch = false
     public var previewAtForceTouch = false
-    public var startplayBack: PHLivePhotoViewPlaybackStyle = .hint
+    public var startplayBack = false
     public var allowedLivePhotos = true
     public var allowedVideo = true
     public var allowedAlbumCloudShared = false
@@ -149,6 +149,15 @@ open class TLPhotosPickerViewController: UIViewController {
     @IBOutlet open var emptyImageView: UIImageView!
     @IBOutlet open var emptyMessageLabel: UILabel!
     @IBOutlet open var photosButton: UIBarButtonItem!
+    
+    @IBOutlet weak var selectedCountLabel: UILabel!
+    @IBOutlet weak var noSelectionLabel: UILabel!
+    
+    @IBOutlet weak var firstImageView: UIImageView!
+    @IBOutlet weak var secondImageView: UIImageView!
+    @IBOutlet weak var thirdImageView: UIImageView!
+    lazy var imageViews = [firstImageView, secondImageView, thirdImageView]
+    var selectedIndexPaths = Set<IndexPath>()
     
     public weak var delegate: TLPhotosPickerViewControllerDelegate? = nil
     public weak var logDelegate: TLPhotosPickerLogDelegate? = nil
@@ -368,6 +377,40 @@ open class TLPhotosPickerViewController: UIViewController {
         }
         return false
     }
+    
+    @IBAction func remove(_ sender: UIGestureRecognizer) {
+        guard let index = imageViews.map(\.?.superview).firstIndex(of: sender.view) else { return }
+        for indexPath in selectedIndexPaths {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? TLPhotoCollectionViewCell else { continue }
+            if cell.asset == selectedAssets[index].phAsset {
+                toggleSelection(for: cell, at: indexPath)
+                return
+            }
+        }
+    }
+    
+    func insert(image: UIImage?) {
+        let imageView = imageViews[selectedAssets.count - 1]
+        imageView?.image = image
+        imageView?.superview?.isHidden = false
+        
+        update()
+    }
+    
+    func remove(at index: Int) {
+        for index in index..<selectedAssets.count {
+            imageViews[index]?.image = imageViews[index + 1]?.image
+        }
+        
+        imageViews[selectedAssets.count]?.superview?.isHidden = true
+        
+        update()
+    }
+    
+    func update() {
+        selectedCountLabel.text = "사진앨범 (\(selectedAssets.count))"
+        noSelectionLabel.isHidden = !selectedAssets.isEmpty
+    }
 }
 
 // MARK: - UI & UI Action
@@ -393,7 +436,7 @@ extension TLPhotosPickerViewController {
             return
         }
         let count = CGFloat(self.configure.numberOfColumn)
-        let width = floor((self.view.frame.size.width - (self.configure.minimumInteritemSpacing * (count-1))) / count)
+        let width = floor((self.view.frame.size.width - (self.configure.minimumInteritemSpacing * (count-1)) - 19.5 * 2) / count)
         self.thumbnailSize = CGSize(width: width, height: width)
         layout.itemSize = self.thumbnailSize
         layout.minimumInteritemSpacing = self.configure.minimumInteritemSpacing
@@ -527,7 +570,7 @@ extension TLPhotosPickerViewController {
     }
     
     // User Action
-    @objc func titleTap() {
+    @IBAction func titleTap() {
         guard collections.count > 0 else { return }
         self.albumPopView.show(self.albumPopView.isHidden, duration: self.configure.popup.duration)
     }
@@ -801,23 +844,29 @@ extension TLPhotosPickerViewController: PHLivePhotoViewDelegate {
             }
         }else if asset.type == .livePhoto && self.allowedLivePhotos {
             guard let cell = self.collectionView.cellForItem(at: indexPath) as? TLPhotoCollectionViewCell else { return }
-            let requestID = self.photoLibrary.livePhotoAsset(asset: phAsset, size: self.thumbnailSize, completionBlock: { [weak cell] (livePhoto,complete) in
-                cell?.livePhotoView?.isHidden = false
-                cell?.livePhotoView?.livePhoto = livePhoto
-                cell?.livePhotoView?.isMuted = true
-                cell?.livePhotoView?.startPlayback(with: self.configure.startplayBack)
-            })
-            if requestID > 0 {
-                self.playRequestID = (indexPath,requestID)
+            if #available(iOS 9.1, *) {
+                let requestID = self.photoLibrary.livePhotoAsset(asset: phAsset, size: self.thumbnailSize, completionBlock: { [weak cell] (livePhoto,complete) in
+                    cell?.livePhotoView?.isHidden = false
+                    //                cell?.livePhotoView?.livePhoto = livePhoto
+                    //                cell?.livePhotoView?.isMuted = true
+                    //                cell?.livePhotoView?.startPlayback(with: self.configure.startplayBack)
+                })
+                if requestID > 0 {
+                    self.playRequestID = (indexPath,requestID)
+                }
+            } else {
+                // Fallback on earlier versions
             }
         }
     }
     
+    @available(iOS 9.1, *)
     public func livePhotoView(_ livePhotoView: PHLivePhotoView, didEndPlaybackWith playbackStyle: PHLivePhotoViewPlaybackStyle) {
         livePhotoView.isMuted = true
-        livePhotoView.startPlayback(with: self.configure.startplayBack)
+        livePhotoView.startPlayback(with: .hint)
     }
     
+    @available(iOS 9.1, *)
     public func livePhotoView(_ livePhotoView: PHLivePhotoView, willBeginPlaybackWith playbackStyle: PHLivePhotoViewPlaybackStyle) {
     }
 }
@@ -950,14 +999,20 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
     
     private func orderUpdateCells() {
         let visibleIndexPaths = self.collectionView.indexPathsForVisibleItems.sorted(by: { $0.row < $1.row })
+        let isFull = selectedAssets.count == configure.maxSelectedAssets
         for indexPath in visibleIndexPaths {
             guard let cell = self.collectionView.cellForItem(at: indexPath) as? TLPhotoCollectionViewCell else { continue }
             guard let asset = self.focusedCollection?.getTLAsset(at: indexPath) else { continue }
             if let selectedAsset = getSelectedAssets(asset) {
                 cell.selectedAsset = true
                 cell.orderLabel?.text = "\(selectedAsset.selectedOrder)"
+                cell.numberImageView.image = UIImage(named: "checked-num-\(selectedAsset.selectedOrder)")
             }else {
                 cell.selectedAsset = false
+                if !isFull {
+                    cell.numberImageView.image = UIImage(named: "checked_num")
+                }
+                cell.numberImageView.isHidden = isFull
             }
         }
     }
@@ -1074,8 +1129,12 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
                 }
             }
             if self.allowedLivePhotos {
-                cell.liveBadgeImageView?.image = asset.type == .livePhoto ? PHLivePhotoView.livePhotoBadgeImage(options: .overContent) : nil
-                cell.livePhotoView?.delegate = asset.type == .livePhoto ? self : nil
+                if #available(iOS 9.1, *) {
+                    cell.liveBadgeImageView?.image = asset.type == .livePhoto ? PHLivePhotoView.livePhotoBadgeImage(options: .overContent) : nil
+                } else {
+                    // Fallback on earlier versions
+                }
+//                cell.livePhotoView?.delegate = asset.type == .livePhoto ? self : nil
             }
         }
         cell.alpha = 0
@@ -1304,6 +1363,9 @@ extension TLPhotosPickerViewController {
             if playRequestID?.indexPath == indexPath {
                 stopPlay()
             }
+            
+            remove(at: index)
+            selectedIndexPaths.remove(indexPath)
         } else {
         //select
             logDelegate?.selectedPhoto(picker: self, at: indexPath.row)
@@ -1317,6 +1379,15 @@ extension TLPhotosPickerViewController {
             if asset.type != .photo, configure.autoPlay {
                 playVideo(asset: asset, indexPath: indexPath)
             }
+            
+            if selectedAssets.count == configure.maxSelectedAssets {
+                orderUpdateCells()
+            } else {
+                cell.numberImageView.image = UIImage(named: "checked-num-\(asset.selectedOrder)")
+            }
+            
+            insert(image: cell.imageView?.image)
+            selectedIndexPaths.insert(indexPath)
         }
 
     }

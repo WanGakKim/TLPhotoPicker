@@ -33,7 +33,7 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
     private var observer: NSObjectProtocol?
     @IBOutlet open var imageView: UIImageView?
     @IBOutlet open var playerView: TLPlayerView?
-    @IBOutlet open var livePhotoView: PHLivePhotoView?
+    @IBOutlet open var livePhotoView: UIView?
     @IBOutlet open var liveBadgeImageView: UIImageView?
     @IBOutlet open var durationView: UIView?
     @IBOutlet open var videoIconImageView: UIImageView?
@@ -43,13 +43,14 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet open var selectedHeight: NSLayoutConstraint?
     @IBOutlet open var orderLabel: UILabel?
     @IBOutlet open var orderBgView: UIView?
+    @IBOutlet weak var numberImageView: UIImageView!
     
     var configure = TLPhotosPickerConfigure() {
         didSet {
             self.selectedView?.layer.borderColor = self.configure.selectedColor.cgColor
             self.orderBgView?.backgroundColor = self.configure.selectedColor
             self.videoIconImageView?.image = self.configure.videoIcon
-            self.orderBgView?.isHidden = self.configure.singleSelectedMode
+//            self.orderBgView?.isHidden = self.configure.singleSelectedMode
             self.orderLabel?.isHidden = self.configure.singleSelectedMode
         }
     }
@@ -143,10 +144,10 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
             player.pause()
             self.player = nil
         }
-        self.livePhotoView?.livePhoto = nil
-        self.livePhotoView?.isHidden = true
-        self.livePhotoView?.stopPlayback()
-        self.livePhotoView?.delegate = nil
+//        self.livePhotoView?.livePhoto = nil
+//        self.livePhotoView?.isHidden = true
+//        self.livePhotoView?.stopPlayback()
+//        self.livePhotoView?.delegate = nil
     }
     
     deinit {
@@ -159,8 +160,9 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
         self.livePhotoView?.isHidden = true
         self.durationView?.isHidden = true
         self.selectedView?.isHidden = true
-        self.selectedView?.layer.borderWidth = 10
-        self.selectedView?.layer.cornerRadius = 15
+//        self.selectedView?.layer.borderWidth = 10
+//        self.selectedView?.layer.cornerRadius = 15
+        selectedView?.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.orderBgView?.layer.cornerRadius = 2
         self.videoIconImageView?.image = self.configure.videoIcon
         if #available(iOS 11.0, *) {

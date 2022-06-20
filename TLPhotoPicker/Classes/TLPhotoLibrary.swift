@@ -29,6 +29,7 @@ class TLPhotoLibrary {
         //        print("deinit TLPhotoLibrary")
     }
     
+    @available(iOS 9.1, *)
     @discardableResult
     func livePhotoAsset(asset: PHAsset, size: CGSize = CGSize(width: 720, height: 1280), progressBlock: Photos.PHAssetImageProgressHandler? = nil, completionBlock:@escaping (PHLivePhoto,Bool)-> Void ) -> PHImageRequestID {
         let options = PHLivePhotoRequestOptions()
@@ -149,9 +150,13 @@ extension TLPhotoLibrary {
             let notVideoPredicate = NSPredicate(format: "mediaType != %i", PHAssetMediaType.video.rawValue)
             options.merge(predicate: notVideoPredicate)
         }
-        if configure.allowedLivePhotos == false {
-            let notLivePhotoPredicate = NSPredicate(format: "NOT ((mediaSubtype & %d) != 0)", PHAssetMediaSubtype.photoLive.rawValue)
-            options.merge(predicate: notLivePhotoPredicate)
+        if #available(iOS 9.1, *) {
+            if configure.allowedLivePhotos == false {
+                let notLivePhotoPredicate = NSPredicate(format: "NOT ((mediaSubtype & %d) != 0)", PHAssetMediaSubtype.photoLive.rawValue)
+                options.merge(predicate: notLivePhotoPredicate)
+            } else {
+                // Fallback on earlier versions
+            }
         }
         if let maxVideoDuration = configure.maxVideoDuration {
             let durationPredicate = NSPredicate(format: "duration < %f", maxVideoDuration)
