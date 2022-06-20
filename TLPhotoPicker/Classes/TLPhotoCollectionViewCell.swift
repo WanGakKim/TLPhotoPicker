@@ -33,7 +33,7 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
     private var observer: NSObjectProtocol?
     @IBOutlet open var imageView: UIImageView?
     @IBOutlet open var playerView: TLPlayerView?
-    @IBOutlet open var livePhotoView: PHLivePhotoView?
+    @IBOutlet open var livePhotoView: UIView?
     @IBOutlet open var liveBadgeImageView: UIImageView?
     @IBOutlet open var durationView: UIView?
     @IBOutlet open var videoIconImageView: UIImageView?
@@ -143,10 +143,10 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
             player.pause()
             self.player = nil
         }
-        self.livePhotoView?.livePhoto = nil
-        self.livePhotoView?.isHidden = true
-        self.livePhotoView?.stopPlayback()
-        self.livePhotoView?.delegate = nil
+//        self.livePhotoView?.livePhoto = nil
+//        self.livePhotoView?.isHidden = true
+//        self.livePhotoView?.stopPlayback()
+//        self.livePhotoView?.delegate = nil
     }
     
     deinit {

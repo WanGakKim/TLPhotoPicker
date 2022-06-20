@@ -32,12 +32,20 @@ public struct TLPHAsset {
     public var type: AssetType {
         get {
             guard let phAsset = self.phAsset else { return .photo }
-            if phAsset.mediaSubtypes.contains(.photoLive) {
-                return .livePhoto
-            }else if phAsset.mediaType == .video {
-                return .video
-            }else {
-                return .photo
+            if #available(iOS 9.1, *) {
+                if phAsset.mediaSubtypes.contains(.photoLive) {
+                    return .livePhoto
+                }else if phAsset.mediaType == .video {
+                    return .video
+                }else {
+                    return .photo
+                }
+            } else {
+                if phAsset.mediaType == .video {
+                    return .video
+                }else {
+                    return .photo
+                }
             }
         }
     }
@@ -74,10 +82,14 @@ public struct TLPHAsset {
     public func photoSize(options: PHImageRequestOptions? = nil ,completion: @escaping ((Int)->Void), livePhotoVideoSize: Bool = false) {
         guard let phAsset = self.phAsset, self.type == .photo || self.type == .livePhoto else { completion(-1); return }
         var resource: PHAssetResource? = nil
-        if phAsset.mediaSubtypes.contains(.photoLive) == true, livePhotoVideoSize {
-            resource = PHAssetResource.assetResources(for: phAsset).filter { $0.type == .pairedVideo }.first
-        }else {
-            resource = PHAssetResource.assetResources(for: phAsset).filter { $0.type == .photo }.first
+        if #available(iOS 9.1, *) {
+            if phAsset.mediaSubtypes.contains(.photoLive) == true, livePhotoVideoSize {
+                resource = PHAssetResource.assetResources(for: phAsset).filter { $0.type == .pairedVideo }.first
+            }else {
+                resource = PHAssetResource.assetResources(for: phAsset).filter { $0.type == .photo }.first
+            }
+        } else {
+            // Fallback on earlier versions
         }
         if let fileSize = resource?.value(forKey: "fileSize") as? Int {
             completion(fileSize)
@@ -139,6 +151,7 @@ public struct TLPHAsset {
         return nil
     }
     
+    @available(iOS 9.1, *)
     private func tempCopyLivePhotos(phAsset: PHAsset,
                                     livePhotoRequestOptions: PHLivePhotoRequestOptions? = nil,
                                     localURL: URL,
@@ -175,17 +188,21 @@ public struct TLPHAsset {
     // true  : If you want png file at live photos ( HEIC )
     public func tempCopyMediaFile(videoRequestOptions: PHVideoRequestOptions? = nil,
                                   imageRequestOptions: PHImageRequestOptions? = nil,
-                                  livePhotoRequestOptions: PHLivePhotoRequestOptions? = nil,
+                                  livePhotoRequestOptions: Int? = nil,
                                   exportPreset: String = AVAssetExportPresetHighestQuality,
                                   convertLivePhotosToJPG: Bool = false,
                                   progressBlock:((Double) -> Void)? = nil,
                                   completionBlock:@escaping ((URL,String) -> Void)) -> PHImageRequestID? {
         guard let phAsset = self.phAsset else { return nil }
         var type: PHAssetResourceType? = nil
-        if phAsset.mediaSubtypes.contains(.photoLive) == true, convertLivePhotosToJPG == false {
-            type = .pairedVideo
-        }else {
-            type = phAsset.mediaType == .video ? .video : .photo
+        if #available(iOS 9.1, *) {
+            if phAsset.mediaSubtypes.contains(.photoLive) == true, convertLivePhotosToJPG == false {
+                type = .pairedVideo
+            }else {
+                type = phAsset.mediaType == .video ? .video : .photo
+            }
+        } else {
+            // Fallback on earlier versions
         }
         guard let resource = (PHAssetResource.assetResources(for: phAsset).filter{ $0.type == type }).first else { return nil }
         let fileName = resource.originalFilename
@@ -196,11 +213,15 @@ public struct TLPHAsset {
             writeURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent("\(fileName)")
         }
         guard var localURL = writeURL,var mimetype = MIMEType(writeURL) else { return nil }
-        if type == .pairedVideo {
-            return tempCopyLivePhotos(phAsset: phAsset,
-                                      livePhotoRequestOptions: livePhotoRequestOptions,
-                                      localURL: localURL,
-                                      completionBlock: { completionBlock(localURL, mimetype) })
+        if #available(iOS 9.1, *) {
+            if type == .pairedVideo {
+                return tempCopyLivePhotos(phAsset: phAsset,
+                                          livePhotoRequestOptions: nil,
+                                          localURL: localURL,
+                                          completionBlock: { completionBlock(localURL, mimetype) })
+            }
+        } else {
+            // Fallback on earlier versions
         }
         switch phAsset.mediaType {
         case .video:
@@ -246,16 +267,21 @@ public struct TLPHAsset {
             { (data, uti, orientation, info) in
                 do {
                     var data = data
-                    let needConvertLivePhotoToJPG = phAsset.mediaSubtypes.contains(.photoLive) == true && convertLivePhotosToJPG == true
-                    if needConvertLivePhotoToJPG {
-                        let name = localURL.deletingPathExtension().lastPathComponent
-                        localURL.deleteLastPathComponent()
-                        localURL.appendPathComponent("\(name).jpg")
-                        mimetype = "image/jpeg"
+                    if #available(iOS 9.1, *) {
+                        let needConvertLivePhotoToJPG = phAsset.mediaSubtypes.contains(.photoLive) == true && convertLivePhotosToJPG == true
+                        if needConvertLivePhotoToJPG {
+                            let name = localURL.deletingPathExtension().lastPathComponent
+                            localURL.deleteLastPathComponent()
+                            localURL.appendPathComponent("\(name).jpg")
+                            mimetype = "image/jpeg"
+                        }
+                        if needConvertLivePhotoToJPG, let imgData = data, let rawImage = UIImage(data: imgData)?.upOrientationImage() {
+                            data = rawImage.jpegData(compressionQuality: 1)
+                        }
+                    } else {
+                        // Fallback on earlier versions
                     }
-                    if needConvertLivePhotoToJPG, let imgData = data, let rawImage = UIImage(data: imgData)?.upOrientationImage() {
-                        data = rawImage.jpegData(compressionQuality: 1)
-                    }
+                    
                     try data?.write(to: localURL)
                     DispatchQueue.main.async {
                         completionBlock(localURL, mimetype)
