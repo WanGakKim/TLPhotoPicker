@@ -576,8 +576,10 @@ extension TLPhotosPickerViewController {
     }
     
     @IBAction open func cancelButtonTap() {
-        self.stopPlay()
-        self.dismiss(done: false)
+        confirmIfSelected("취소하시겠습니까?") {
+            self.stopPlay()
+            self.dismiss(done: false)
+        }
     }
     
     @IBAction open func doneButtonTap() {
@@ -589,6 +591,20 @@ extension TLPhotosPickerViewController {
         if #available(iOS 14.0, *) {
             PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
         }
+    }
+    
+    func confirmIfSelected(_ message: String, _ action: @escaping () -> Void) {
+        guard !selectedAssets.isEmpty else {
+            action()
+            return
+        }
+        
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+            action()
+        })
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        present(alert, animated: true)
     }
     
     private func dismiss(done: Bool) {
