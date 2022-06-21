@@ -29,6 +29,7 @@
                 <outlet property="popArrowImageView" destination="5zn-je-qLx" id="6k9-cH-vcU"/>
                 <outlet property="secondImageView" destination="rgL-2j-qwo" id="Lnn-fz-VmU"/>
                 <outlet property="selectedCountLabel" destination="sC5-9s-sWt" id="NGh-WU-gKT"/>
+                <outlet property="sendButton" destination="9hk-FW-7t0" id="kgZ-tL-Obj"/>
                 <outlet property="subTitleArrowImageView" destination="b7w-7R-rco" id="IjY-7S-Zz1"/>
                 <outlet property="subTitleLabel" destination="DON-iU-Cox" id="ZyB-O9-EcR"/>
                 <outlet property="subTitleStackView" destination="kgt-Cn-AXg" id="Vcc-hP-iqe"/>
@@ -123,7 +124,7 @@
                                 <outletCollection property="gestureRecognizers" destination="jsf-1L-xXm" appends="YES" id="Tqe-uD-qNa"/>
                             </connections>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hk-FW-7t0" customClass="BorderRoundView" customModule="lkhtestprj">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hk-FW-7t0" customClass="BorderRoundView" customModule="lkhtestprj">
                             <rect key="frame" x="1280.5" y="14.5" width="65.5" height="39"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMt-Y1-OHx">

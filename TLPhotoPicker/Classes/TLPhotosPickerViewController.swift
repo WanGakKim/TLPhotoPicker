@@ -150,6 +150,7 @@ open class TLPhotosPickerViewController: UIViewController {
     @IBOutlet open var emptyMessageLabel: UILabel!
     @IBOutlet open var photosButton: UIBarButtonItem!
     
+    @IBOutlet weak var sendButton: UIView!
     @IBOutlet weak var selectedCountLabel: UILabel!
     @IBOutlet weak var noSelectionLabel: UILabel!
     
@@ -410,6 +411,7 @@ open class TLPhotosPickerViewController: UIViewController {
     func update() {
         selectedCountLabel.text = "사진앨범 (\(selectedAssets.count))"
         noSelectionLabel.isHidden = !selectedAssets.isEmpty
+        sendButton.isHidden = selectedAssets.isEmpty
     }
 }
 
