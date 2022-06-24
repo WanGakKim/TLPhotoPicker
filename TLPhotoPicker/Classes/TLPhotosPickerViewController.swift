@@ -761,6 +761,10 @@ extension TLPhotosPickerViewController: UIImagePickerControllerDelegate, UINavig
                     result.isSelectedFromCamera = true
                     self.selectedAssets.append(result)
                     self.logDelegate?.selectedPhoto(picker: self, at: 1)
+                    DispatchQueue.main.async {
+                        self.insert(image: image)
+                        self.selectedIndexPaths.insert(IndexPath(item: 1, section: 0))
+                    }
                 }
             })
         }
