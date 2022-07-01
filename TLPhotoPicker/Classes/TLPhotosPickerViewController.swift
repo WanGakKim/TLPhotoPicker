@@ -764,7 +764,9 @@ extension TLPhotosPickerViewController: UIImagePickerControllerDelegate, UINavig
                     DispatchQueue.main.async {
                         self.insert(image: image)
                         self.selectedIndexPaths.insert(IndexPath(item: 1, section: 0))
-                    }
+                        if self.selectedAssets.count == self.configure.maxSelectedAssets {
+                            self.orderUpdateCells()
+                        }                    }
                 }
             })
         }
@@ -1087,6 +1089,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
         if let selectedAsset = getSelectedAssets(asset) {
             cell.selectedAsset = true
             cell.orderLabel?.text = "\(selectedAsset.selectedOrder)"
+            cell.numberImageView.image = UIImage(named: "checked-num-\(selectedAsset.selectedOrder)")
         }else{
             cell.selectedAsset = false
         }
