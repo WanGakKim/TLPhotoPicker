@@ -94,6 +94,9 @@ public struct TLPhotosPickerConfigure {
     public var groupByFetch: PHFetchedResultGroupedBy? = nil
     public var supportedInterfaceOrientations: UIInterfaceOrientationMask = .portrait
     public var popup: [PopupConfigure] = []
+    public var preselect: [URL]? = nil
+    public var setImage: ((UIImageView?, URL?) -> ())?
+    public var getURL: ((UIImageView?) -> URL?)?
     public init() {
         
     }
@@ -321,6 +324,20 @@ open class TLPhotosPickerViewController: UIViewController {
         super.viewDidLoad()
         makeUI()
         checkAuthorization()
+        
+        if let preselected = configure.preselect {
+            for url in preselected {
+                var asset = TLPHAsset(asset: nil)
+                asset.url = url
+                selectedAssets.append(asset)
+                
+                let imageView = imageViews[selectedAssets.count - 1]
+                configure.setImage?(imageView, url)
+                imageView?.superview?.isHidden = false
+            }
+            
+            update()
+        }
     }
     
     override open func viewDidLayoutSubviews() {
@@ -388,6 +405,18 @@ open class TLPhotosPickerViewController: UIViewController {
                 return
             }
         }
+        
+        guard let index = selectedAssets.firstIndex(where: { $0.url == configure.getURL?(imageViews[index]!) }) else { return }
+        //deselect
+        selectedAssets.remove(at: index)
+        selectedAssets = selectedAssets.enumerated().compactMap({ (offset,asset) -> TLPHAsset? in
+            var asset = asset
+            asset.selectedOrder = offset + 1
+            return asset
+        })
+        orderUpdateCells()
+        
+        remove(at: index)
     }
     
     func insert(image: UIImage?) {
@@ -401,6 +430,7 @@ open class TLPhotosPickerViewController: UIViewController {
     func remove(at index: Int) {
         for index in index..<selectedAssets.count {
             imageViews[index]?.image = imageViews[index + 1]?.image
+            configure.setImage?(imageViews[index], selectedAssets[index].url)
         }
         
         imageViews[selectedAssets.count]?.superview?.isHidden = true
