@@ -441,7 +441,7 @@ open class TLPhotosPickerViewController: UIViewController {
     func update() {
         selectedCountLabel.text = "사진앨범 (\(selectedAssets.count))"
         noSelectionLabel.isHidden = !selectedAssets.isEmpty
-        sendButton.isHidden = selectedAssets.isEmpty
+        sendButton.isHidden = selectedAssets.isEmpty && (configure.preselect ?? []).isEmpty
     }
 }
 
@@ -626,7 +626,7 @@ extension TLPhotosPickerViewController {
     }
     
     func confirmIfSelected(_ message: String, _ action: @escaping () -> Void) {
-        guard !selectedAssets.isEmpty else {
+        guard !selectedAssets.isEmpty || !(configure.preselect ?? []).isEmpty else {
             action()
             return
         }
