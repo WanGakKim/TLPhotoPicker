@@ -15,7 +15,7 @@ fileprivate var scale: CGFloat {
     }
 }
 
-public extension IntegerLiteralType {
+internal extension IntegerLiteralType {
     var f: CGFloat {
         return CGFloat(self)
     }
@@ -25,7 +25,7 @@ public extension IntegerLiteralType {
     }
 }
 
-public extension FloatLiteralType {
+internal extension FloatLiteralType {
     var f: CGFloat {
         return CGFloat(self)
     }
@@ -35,7 +35,7 @@ public extension FloatLiteralType {
     }
 }
 
-public extension CGFloat {
+internal extension CGFloat {
     var autoScaled: CGFloat {
         return CGFloat(self) * scale
     }

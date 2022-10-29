@@ -10,7 +10,7 @@ import UIKit
 // MARK: - UILabel
 
 @IBDesignable
-extension UILabel {
+internal extension UILabel {
     
     @IBInspectable
     var letterSpacing: CGFloat {
@@ -91,16 +91,11 @@ extension UILabel {
             return currentParagraphStyle?.lineSpacing ?? 0
         }
     }
-    
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
 }
 
 // MARK: - CALayer
 
-extension CALayer {
+internal extension CALayer {
     func applySketchShadow(
         color: UIColor,
         alpha: Float,

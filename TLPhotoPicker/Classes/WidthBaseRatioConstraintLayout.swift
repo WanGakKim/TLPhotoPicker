@@ -7,8 +7,8 @@
 
 import UIKit
 
-class WidthBaseRatioConstraintLayout: NSLayoutConstraint {
-
+internal class WidthBaseRatioConstraintLayout: NSLayoutConstraint {
+    
     private var screenSize: (width: CGFloat, height: CGFloat) {
         return (UIScreen.main.bounds.width, UIScreen.main.bounds.height)
     }
