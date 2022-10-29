@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AutoScaleView: UIView {
+class TLAutoScaleView: UIView {
     
     private var isUpdatedCornerRadius = false
     
@@ -58,7 +58,7 @@ class AutoScaleView: UIView {
     }
 }
 
-class MainContentView: AutoScaleView {
+class MainContentView: TLAutoScaleView {
     
     override func initUI() {
         self.layer.cornerRadius = 12.5
@@ -99,7 +99,7 @@ class MainContentView: AutoScaleView {
     }
 }
 
-class AllStudyTitleView: AutoScaleView {
+class AllStudyTitleView: TLAutoScaleView {
     
     override func initUI() {
         
@@ -114,7 +114,7 @@ class AllStudyTitleView: AutoScaleView {
 }
 
 @IBDesignable
-class StudyManagementHeaderView: AutoScaleView {
+class StudyManagementHeaderView: TLAutoScaleView {
     
     override func initUI() {
         if #available(iOS 11.0, *) {

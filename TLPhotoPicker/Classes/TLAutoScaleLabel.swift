@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AutoScaleLabel: UILabel {
+class TLAutoScaleLabel: UILabel {
     
     private var isUpdatedCornerRadius = false
     

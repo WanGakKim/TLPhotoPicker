@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AutoScaleButton: UIButton {
+class TLAutoScaleButton: UIButton {
     
     private var isUpdatedCornerRadius = false
     

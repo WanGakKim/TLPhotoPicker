@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AutoScaleSpacingStackView: UIStackView {
+class TLAutoScaleSpacingStackView: UIStackView {
    
     override func awakeFromNib() {
         super.awakeFromNib()
