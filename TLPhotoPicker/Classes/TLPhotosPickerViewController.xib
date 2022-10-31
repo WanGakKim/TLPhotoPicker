@@ -246,7 +246,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="zeq-Ql-cux" customClass="TLAutoScaleSpacingStackView" customModule="TLPhotoPicker">
                     <rect key="frame" x="20" y="173" width="0.0" height="0.0"/>
                     <subviews>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPN-gC-FsV">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPN-gC-FsV" customClass="TLBorderView" customModule="TLPhotoPicker">
                             <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TtA-X0-6bA">
@@ -272,11 +272,22 @@
                                 <constraint firstAttribute="bottom" secondItem="TtA-X0-6bA" secondAttribute="bottom" id="Zgn-BR-FhS" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="IpX-PW-J0s" firstAttribute="top" secondItem="UPN-gC-FsV" secondAttribute="top" id="Zka-Bh-0yF" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="7.5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="width">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                    <color key="value" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="xgr-da-yac" appends="YES" id="vja-NT-C4f"/>
                             </connections>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-1v-gNh">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-1v-gNh" customClass="TLBorderView" customModule="TLPhotoPicker">
                             <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rgL-2j-qwo">
@@ -302,11 +313,22 @@
                                 <constraint firstItem="rgL-2j-qwo" firstAttribute="leading" secondItem="ypA-1v-gNh" secondAttribute="leading" id="kDz-YN-JSh" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="q0U-cA-mjZ" firstAttribute="top" secondItem="ypA-1v-gNh" secondAttribute="top" id="prS-vK-jPg" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="7.5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="width">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                    <color key="value" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="F0P-va-dei" appends="YES" id="37f-xe-LTk"/>
                             </connections>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vna-aM-2j5">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vna-aM-2j5" customClass="TLBorderView" customModule="TLPhotoPicker">
                             <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DLG-Iq-n3G">
@@ -332,6 +354,17 @@
                                 <constraint firstAttribute="trailing" secondItem="z6K-hm-x8S" secondAttribute="trailing" id="sCo-fG-WFM" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="DLG-Iq-n3G" firstAttribute="leading" secondItem="Vna-aM-2j5" secondAttribute="leading" id="wxg-m6-u3Y" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="7.5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="width">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                    <color key="value" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="JLV-Ue-djA" appends="YES" id="Irh-aG-9vL"/>
                             </connections>
@@ -510,6 +543,9 @@
         </tapGestureRecognizer>
     </objects>
     <designables>
+        <designable name="9xv-SH-TVg">
+            <size key="intrinsicContentSize" width="86" height="27"/>
+        </designable>
         <designable name="CiG-ql-QkY">
             <size key="intrinsicContentSize" width="161.5" height="20"/>
         </designable>
