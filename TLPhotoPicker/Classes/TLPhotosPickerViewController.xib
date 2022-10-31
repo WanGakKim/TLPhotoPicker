@@ -75,25 +75,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ql8-7f-9Uk">
-                                        <rect key="frame" x="0.0" y="0.0" width="44.333333333333336" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="44.5" height="0.0"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuG-bc-Oq9">
-                                                <rect key="frame" x="1.6666666666666679" y="0.0" width="41.333333333333329" height="0.0"/>
+                                                <rect key="frame" x="1.5" y="0.0" width="41.5" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kgt-Cn-AXg">
-                                                <rect key="frame" x="0.0" y="0.0" width="44.333333333333336" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="44.5" height="0.0"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DON-iU-Cox">
-                                                        <rect key="frame" x="0.0" y="0.0" width="29.333333333333332" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="29.5" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b7w-7R-rco">
-                                                        <rect key="frame" x="34.333333333333336" y="0.0" width="10" height="0.0"/>
+                                                        <rect key="frame" x="34.5" y="0.0" width="10" height="0.0"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="b7w-7R-rco" secondAttribute="height" multiplier="1:1" id="32O-QV-qyv" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                                             <constraint firstAttribute="width" priority="999" constant="10" id="7bM-Da-Q8A" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
@@ -409,7 +409,7 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcn-hC-Umh" customClass="TLAlbumPopView" customModule="TLPhotoPicker">
                     <rect key="frame" x="0.0" y="70" width="1024" height="698"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKD-We-AdT">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKD-We-AdT" customClass="TLAutoScaleView" customModule="TLPhotoPicker">
                             <rect key="frame" x="0.0" y="0.0" width="1024" height="698"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                         </view>
