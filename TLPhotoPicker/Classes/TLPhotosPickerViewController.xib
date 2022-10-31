@@ -246,14 +246,11 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="zeq-Ql-cux" customClass="TLAutoScaleSpacingStackView" customModule="TLPhotoPicker">
                     <rect key="frame" x="20" y="173" width="0.0" height="0.0"/>
                     <subviews>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPN-gC-FsV" customClass="TLBorderView" customModule="TLPhotoPicker">
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPN-gC-FsV" customClass="TLBorderView" customModule="TLPhotoPicker">
                             <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TtA-X0-6bA">
-                                    <rect key="frame" x="0.0" y="10.5" width="128" height="128"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="TtA-X0-6bA" secondAttribute="height" multiplier="1:1" id="0ck-mX-qKM" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file_delete" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-PW-J0s">
                                     <rect key="frame" x="111.5" y="0.0" width="24" height="24"/>
@@ -265,9 +262,11 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <gestureRecognizers/>
                             <constraints>
+                                <constraint firstItem="TtA-X0-6bA" firstAttribute="top" secondItem="UPN-gC-FsV" secondAttribute="top" id="1uc-7a-kgV"/>
                                 <constraint firstItem="TtA-X0-6bA" firstAttribute="leading" secondItem="UPN-gC-FsV" secondAttribute="leading" id="8Eh-wA-m7L" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="IpX-PW-J0s" firstAttribute="width" secondItem="UPN-gC-FsV" secondAttribute="width" multiplier="0.177122" id="LzS-nr-Xxt" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstAttribute="width" secondItem="UPN-gC-FsV" secondAttribute="height" multiplier="135.5:138.5" id="S5n-Oy-HzC" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
+                                <constraint firstAttribute="trailing" secondItem="TtA-X0-6bA" secondAttribute="trailing" id="VeK-xv-VgB"/>
                                 <constraint firstAttribute="trailing" secondItem="IpX-PW-J0s" secondAttribute="trailing" id="XAH-Dv-3k9" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstAttribute="bottom" secondItem="TtA-X0-6bA" secondAttribute="bottom" id="Zgn-BR-FhS" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="IpX-PW-J0s" firstAttribute="top" secondItem="UPN-gC-FsV" secondAttribute="top" id="Zka-Bh-0yF" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
@@ -287,14 +286,11 @@
                                 <outletCollection property="gestureRecognizers" destination="xgr-da-yac" appends="YES" id="vja-NT-C4f"/>
                             </connections>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-1v-gNh" customClass="TLBorderView" customModule="TLPhotoPicker">
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-1v-gNh" customClass="TLBorderView" customModule="TLPhotoPicker">
                             <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rgL-2j-qwo">
-                                    <rect key="frame" x="0.0" y="10.5" width="128" height="128"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="rgL-2j-qwo" secondAttribute="height" multiplier="1:1" id="Fku-pt-yud" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file_delete" translatesAutoresizingMaskIntoConstraints="NO" id="q0U-cA-mjZ">
                                     <rect key="frame" x="111.5" y="0.0" width="24" height="24"/>
@@ -307,7 +303,9 @@
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="q0U-cA-mjZ" secondAttribute="trailing" id="3b9-oR-2VT" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
+                                <constraint firstItem="rgL-2j-qwo" firstAttribute="top" secondItem="ypA-1v-gNh" secondAttribute="top" id="3nw-ot-cfL"/>
                                 <constraint firstItem="q0U-cA-mjZ" firstAttribute="width" secondItem="ypA-1v-gNh" secondAttribute="width" multiplier="0.177122" id="EyK-3P-k3R" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
+                                <constraint firstAttribute="trailing" secondItem="rgL-2j-qwo" secondAttribute="trailing" id="SLo-uW-UqU"/>
                                 <constraint firstAttribute="width" secondItem="ypA-1v-gNh" secondAttribute="height" multiplier="135.5:138.5" id="aud-uK-Z4A" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstAttribute="bottom" secondItem="rgL-2j-qwo" secondAttribute="bottom" id="cde-p5-JuX" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="rgL-2j-qwo" firstAttribute="leading" secondItem="ypA-1v-gNh" secondAttribute="leading" id="kDz-YN-JSh" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
@@ -328,14 +326,11 @@
                                 <outletCollection property="gestureRecognizers" destination="F0P-va-dei" appends="YES" id="37f-xe-LTk"/>
                             </connections>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vna-aM-2j5" customClass="TLBorderView" customModule="TLPhotoPicker">
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vna-aM-2j5" customClass="TLBorderView" customModule="TLPhotoPicker">
                             <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DLG-Iq-n3G">
-                                    <rect key="frame" x="0.0" y="10.5" width="128" height="128"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="DLG-Iq-n3G" secondAttribute="height" multiplier="1:1" id="kla-wo-Fng" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="135.5" height="138.5"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file_delete" translatesAutoresizingMaskIntoConstraints="NO" id="z6K-hm-x8S">
                                     <rect key="frame" x="111.5" y="0.0" width="24" height="24"/>
@@ -351,6 +346,8 @@
                                 <constraint firstItem="z6K-hm-x8S" firstAttribute="width" secondItem="Vna-aM-2j5" secondAttribute="width" multiplier="0.177122" id="Mza-00-jqW" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="z6K-hm-x8S" firstAttribute="top" secondItem="Vna-aM-2j5" secondAttribute="top" id="OYK-cu-TP0" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstAttribute="bottom" secondItem="DLG-Iq-n3G" secondAttribute="bottom" id="QaQ-bY-zdr" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
+                                <constraint firstAttribute="trailing" secondItem="DLG-Iq-n3G" secondAttribute="trailing" id="bPp-4m-dwV"/>
+                                <constraint firstItem="DLG-Iq-n3G" firstAttribute="top" secondItem="Vna-aM-2j5" secondAttribute="top" id="kH3-c5-fFG"/>
                                 <constraint firstAttribute="trailing" secondItem="z6K-hm-x8S" secondAttribute="trailing" id="sCo-fG-WFM" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                                 <constraint firstItem="DLG-Iq-n3G" firstAttribute="leading" secondItem="Vna-aM-2j5" secondAttribute="leading" id="wxg-m6-u3Y" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                             </constraints>
@@ -477,8 +474,6 @@
                 <constraint firstItem="YDZ-o1-AXT" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.0976562" id="Av1-6h-r26" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="4gR-Bn-quP" firstAttribute="top" secondItem="lnE-ZB-9i3" secondAttribute="bottom" constant="226" id="CZx-xl-GLa" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="9hk-FW-7t0" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.0639648" id="Ddr-pB-ScD" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                <constraint firstItem="rgL-2j-qwo" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.125" id="ECx-DF-laF" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                <constraint firstItem="DLG-Iq-n3G" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.125" id="H5S-Mf-VOl" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="X8O-Gg-slz" firstAttribute="top" secondItem="HLR-WT-D3I" secondAttribute="top" id="IKp-hS-tTy" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="Jcn-hC-Umh" firstAttribute="top" secondItem="X8O-Gg-slz" secondAttribute="bottom" id="KdD-nT-6tf" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="dkL-rt-2J4" firstAttribute="height" secondItem="Zyk-dI-msE" secondAttribute="height" multiplier="0.0878906" id="Lbn-T7-Re2" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
@@ -488,7 +483,6 @@
                 <constraint firstAttribute="trailing" secondItem="Jcn-hC-Umh" secondAttribute="trailing" id="Njh-ZO-lnq" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstAttribute="bottom" secondItem="Jcn-hC-Umh" secondAttribute="bottom" id="NxH-d8-b65" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="UPN-gC-FsV" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.132324" id="QNU-zL-fJe" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                <constraint firstItem="TtA-X0-6bA" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.125" id="Qnj-Tw-FY1" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="dkL-rt-2J4" firstAttribute="top" secondItem="Zyk-dI-msE" secondAttribute="top" id="Rvv-a4-RZJ" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="HPm-Vc-F86" firstAttribute="top" secondItem="X8O-Gg-slz" secondAttribute="bottom" id="YyG-QW-0ZP" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="AEv-G6-dRI" firstAttribute="centerY" secondItem="Zyk-dI-msE" secondAttribute="centerY" id="aLU-u9-ALA" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
