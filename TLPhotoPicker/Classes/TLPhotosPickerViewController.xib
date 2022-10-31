@@ -370,7 +370,7 @@
                     </connections>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mN-Zq-tJt" userLabel="line">
-                    <rect key="frame" x="0.0" y="335.5" width="1024" height="1"/>
+                    <rect key="frame" x="19.5" y="335.5" width="985" height="1"/>
                     <color key="backgroundColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="TAC-1A-7eS" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
@@ -470,7 +470,7 @@
                 <constraint firstItem="YDZ-o1-AXT" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.0976562" id="Av1-6h-r26" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="9hk-FW-7t0" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.0639648" id="Ddr-pB-ScD" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="X8O-Gg-slz" firstAttribute="top" secondItem="HLR-WT-D3I" secondAttribute="top" id="IKp-hS-tTy" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                <constraint firstItem="4mN-Zq-tJt" firstAttribute="trailing" secondItem="4gR-Bn-quP" secondAttribute="trailing" id="KIZ-kg-WWf" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
+                <constraint firstItem="4mN-Zq-tJt" firstAttribute="trailing" secondItem="4gR-Bn-quP" secondAttribute="trailing" constant="-19.5" id="KIZ-kg-WWf" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="Jcn-hC-Umh" firstAttribute="top" secondItem="X8O-Gg-slz" secondAttribute="bottom" id="KdD-nT-6tf" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="dkL-rt-2J4" firstAttribute="height" secondItem="Zyk-dI-msE" secondAttribute="height" multiplier="0.0878906" id="Lbn-T7-Re2" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="HPm-Vc-F86" firstAttribute="leading" secondItem="HLR-WT-D3I" secondAttribute="leading" id="M3L-CU-HdQ" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
@@ -486,7 +486,7 @@
                 <constraint firstItem="HPm-Vc-F86" firstAttribute="trailing" secondItem="HLR-WT-D3I" secondAttribute="trailing" id="aoA-8G-xDA" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="Vna-aM-2j5" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.132324" id="cMf-pE-4sM" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="zeq-Ql-cux" firstAttribute="leading" secondItem="HLR-WT-D3I" secondAttribute="leading" constant="20" id="d7m-q1-0mb" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
-                <constraint firstItem="4mN-Zq-tJt" firstAttribute="leading" secondItem="4gR-Bn-quP" secondAttribute="leading" id="dpx-ta-Vda" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
+                <constraint firstItem="4mN-Zq-tJt" firstAttribute="leading" secondItem="4gR-Bn-quP" secondAttribute="leading" constant="19.5" id="dpx-ta-Vda" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="qgq-bN-FHR" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.0170898" id="ekP-an-KvC" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="4gR-Bn-quP" firstAttribute="top" secondItem="zeq-Ql-cux" secondAttribute="bottom" constant="36.5" id="g0Q-4m-fQH" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
                 <constraint firstItem="5zn-je-qLx" firstAttribute="width" secondItem="Zyk-dI-msE" secondAttribute="width" multiplier="0.0136719" id="gMZ-nC-QhU" customClass="WidthBaseRatioConstraintLayout" customModule="TLPhotoPicker"/>
