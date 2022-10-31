@@ -503,6 +503,12 @@ extension TLPhotosPickerViewController {
         self.albumPopView.tableView.dataSource = self
         self.popArrowImageView.image = TLBundle.podBundleImage(named: "pop_arrow")
         self.subTitleArrowImageView.image = TLBundle.podBundleImage(named: "arrow")
+        self.imageViews.forEach {
+            $0?.layer.cornerRadius = 7.5.autoScaled
+            $0?.layer.borderWidth = 1.autoScaled
+            $0?.layer.borderColor = UIColor(red: 206/255, green: 206/255, blue: 206/255, alpha: 1).cgColor
+        }
+        
         if #available(iOS 10.0, *), self.usedPrefetch {
             self.collectionView.isPrefetchingEnabled = true
             self.collectionView.prefetchDataSource = self
