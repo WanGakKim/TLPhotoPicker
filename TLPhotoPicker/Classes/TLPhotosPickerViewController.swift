@@ -347,7 +347,7 @@ open class TLPhotosPickerViewController: UIViewController {
         }
         if #available(iOS 11.0, *) {
         } else if self.navigationBarTopConstraint.constant == 0 {
-            self.navigationBarTopConstraint.constant = 20
+            self.navigationBarTopConstraint.constant = 20 * UIScreen.main.bounds.height/768
         }
     }
     
@@ -467,8 +467,10 @@ extension TLPhotosPickerViewController {
         guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
+        layout.sectionInset = .init(top: 0, left: 19.5.autoScaled, bottom: 0, right: 19.5.autoScaled)
+        
         let count = CGFloat(self.configure.numberOfColumn)
-        let width = floor((self.view.frame.size.width - (self.configure.minimumInteritemSpacing * (count-1)) - 19.5 * 2) / count)
+        let width = floor((self.view.frame.size.width - (self.configure.minimumInteritemSpacing * (count-1)) - 19.5.autoScaled * 2) / count)
         self.thumbnailSize = CGSize(width: width, height: width)
         layout.itemSize = self.thumbnailSize
         layout.minimumInteritemSpacing = self.configure.minimumInteritemSpacing
@@ -555,10 +557,10 @@ extension TLPhotosPickerViewController {
     }
     
     private func reloadTableView() {
-        let count = min(5, self.collections.count)
+        let count = min(5, self.collections.count).f
         var frame = self.albumPopView.popupView.frame
-        frame.size.height = CGFloat(count * 75)
-        self.albumPopView.popupViewHeight.constant = CGFloat(count * 75)
+        frame.size.height = CGFloat(count * 75.f * UIScreen.main.bounds.height/768)
+        self.albumPopView.popupViewHeight.constant = CGFloat(count * 75.f * UIScreen.main.bounds.height/768)
         UIView.animate(withDuration: self.albumPopView.show ? 0.1:0) {
             self.albumPopView.popupView.frame = frame
             self.albumPopView.setNeedsLayout()
