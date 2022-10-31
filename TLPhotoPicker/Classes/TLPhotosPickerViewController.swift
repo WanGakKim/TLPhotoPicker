@@ -1095,6 +1095,11 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         func makeCell(nibName: String) -> TLPhotoCollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nibName, for: indexPath) as! TLPhotoCollectionViewCell
+            if indexPath.row == 0 {
+                cell.numberImageView.isHidden = true
+            }else {
+                cell.numberImageView.isHidden = false
+            }
             cell.configure = self.configure
             cell.imageView?.image = self.placeholderThumbnail
             cell.liveBadgeImageView?.image = nil
