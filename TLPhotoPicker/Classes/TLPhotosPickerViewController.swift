@@ -77,8 +77,8 @@ public struct TLPhotosPickerConfigure {
     public var preventAutomaticLimitedAccessAlert = true
     public var mediaType: PHAssetMediaType? = nil
     public var numberOfColumn = 3
-    public var minimumLineSpacing: CGFloat = 5
-    public var minimumInteritemSpacing: CGFloat = 5
+    public var minimumLineSpacing: CGFloat = 11.autoScaled
+    public var minimumInteritemSpacing: CGFloat = 11.autoScaled
     public var singleSelectedMode = false
     public var maxSelectedAssets: Int? = nil
     public var fetchOption: PHFetchOptions? = nil
