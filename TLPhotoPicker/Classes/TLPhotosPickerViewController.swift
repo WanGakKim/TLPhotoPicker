@@ -266,8 +266,8 @@ open class TLPhotosPickerViewController: UIViewController {
             } else {
                 self.popArrowImageView.image = image?.colorMask(color: .white)
                 self.subTitleArrowImageView.image = subImage
-                self.view.backgroundColor = .white
-                self.collectionView.backgroundColor = .white
+                self.view.backgroundColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1)
+                self.collectionView.backgroundColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1)
             }
         }
     }
