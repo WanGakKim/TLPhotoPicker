@@ -43,7 +43,7 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet open var selectedHeight: NSLayoutConstraint?
     @IBOutlet open var orderLabel: UILabel?
     @IBOutlet open var orderBgView: UIView?
-    @IBOutlet weak var numberImageView: UIImageView!
+    @IBOutlet weak var numberImageView: UIImageView?
     
     var configure = TLPhotosPickerConfigure() {
         didSet {

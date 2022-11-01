@@ -1061,13 +1061,13 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
             if let selectedAsset = getSelectedAssets(asset) {
                 cell.selectedAsset = true
                 cell.orderLabel?.text = "\(selectedAsset.selectedOrder)"
-                cell.numberImageView.image = UIImage(named: "checked-num-\(selectedAsset.selectedOrder)")
+                cell.numberImageView?.image = UIImage(named: "checked-num-\(selectedAsset.selectedOrder)")
             }else {
                 cell.selectedAsset = false
                 if !isFull {
-                    cell.numberImageView.image = UIImage(named: "checked_num")
+                    cell.numberImageView?.image = UIImage(named: "checked_num")
                 }
-                cell.numberImageView.isHidden = isFull
+                cell.numberImageView?.isHidden = isFull
             }
         }
     }
@@ -1106,9 +1106,9 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
             cell.layer.borderWidth = 1.autoScaled
             cell.layer.borderColor = UIColor(red: 206/255, green: 206/255, blue: 206/255, alpha: 1).cgColor
             if indexPath.row == 0 {
-                cell.numberImageView.isHidden = true
+                cell.numberImageView?.isHidden = true
             }else {
-                cell.numberImageView.isHidden = false
+                cell.numberImageView?.isHidden = false
             }
             cell.configure = self.configure
             cell.imageView?.image = self.placeholderThumbnail
@@ -1134,7 +1134,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
         if let selectedAsset = getSelectedAssets(asset) {
             cell.selectedAsset = true
             cell.orderLabel?.text = "\(selectedAsset.selectedOrder)"
-            cell.numberImageView.image = UIImage(named: "checked-num-\(selectedAsset.selectedOrder)")
+            cell.numberImageView?.image = UIImage(named: "checked-num-\(selectedAsset.selectedOrder)")
         }else{
             cell.selectedAsset = false
         }
@@ -1446,7 +1446,7 @@ extension TLPhotosPickerViewController {
             if selectedAssets.count == configure.maxSelectedAssets {
                 orderUpdateCells()
             } else {
-                cell.numberImageView.image = UIImage(named: "checked-num-\(asset.selectedOrder)")
+                cell.numberImageView?.image = UIImage(named: "checked-num-\(asset.selectedOrder)")
             }
             
             insert(image: cell.imageView?.image)
